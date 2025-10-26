@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصفحة الشخصية ضيف الله ناجي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* الخطوط والألوان الأساسية */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Montserrat:wght@700&display=swap');
+
+        :root {
+            --light-text: #f5f5f5;
+            --accent-yellow: #ffc400;
+            --glass-color: rgba(255, 255, 255, 0.1); 
+            --overlay-color: rgba(0, 0, 0, 0.7);
+            --transition-speed: 0.3s;
+            /* ألوان الأيقونات الأصلية */
+            --whatsapp-color: #25D366; 
+            --facebook-color: #1877F2;
+            --email-color: #EA4335;
+        }
+
+        /* إعادة ضبط إعدادات المتصفح */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            /* يرجى تغيير الرابط أدناه بصورتك الشخصية (تأكد من وجود الملف myy.jpg) */
+            background-image: url(myy.jpg); 
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            
+            color: var(--light-text);
+            line-height: 1.8;
+            text-align: right; 
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* طبقة التعتيم الداكنة */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: var(--overlay-color); 
+            z-index: -1;
+        }
+
+        /* ---------------------------------- */
+        /* الترويسة (Header) & القوائم */
+        /* ---------------------------------- */
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 15px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: sticky; 
+            top: 0;
+            z-index: 1000;
+            background-color: var(--glass-color);
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* [بقية تنسيقات القائمة] */
+        .nav-links { list-style: none; display: flex; align-items: center; }
+        .nav-links li { margin-right: 25px; }
+        .nav-links a { color: var(--light-text); text-decoration: none; font-weight: 400; padding: 5px 0; transition: color var(--transition-speed); }
+        .nav-links a:hover { color: var(--accent-yellow); border-bottom: 2px solid var(--accent-yellow); }
+
+        /* ---------------------------------- */
+        /* الأقسام العامة (Section Styles) */
+        /* ---------------------------------- */
+        .main-content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 80px;
+        }
+        
+        .new-section {
+            padding: 50px 30px;
+            margin-top: 40px;
+            border-radius: 15px;
+            background-color: var(--glass-color); 
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: var(--accent-yellow);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--accent-yellow);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        /* [تنسيقات Hero و Skills و Projects كما هي] */
+        .hero-section { display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; padding: 50px 0; position: relative; }
+        .hero-title { font-size: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--light-text); line-height: 1.1; margin-bottom: 20px; }
+        .hero-title span { color: var(--accent-yellow); }
+        .hero-text { color: #ccc; margin-bottom: 30px; }
+        .left-content { flex-basis: 50%; padding-left: 50px; z-index: 10; }
+        .right-content { flex-basis: 50%; position: relative; height: 450px; display: flex; justify-content: flex-end; align-items: center; }
+        .image-container { position: relative; z-index: 10; width: 400px; height: 400px; overflow: hidden; border-radius: 10px; cursor: pointer; border: 4px solid var(--accent-yellow); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); }
+        .profile-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease-out, filter 0.5s ease-out; filter: grayscale(30%); }
+        .image-container:hover .profile-image { transform: scale(1.15); filter: grayscale(0%); }
+        .skills-list { list-style: none; display: flex; flex-wrap: wrap; gap: 15px; }
+        .skill-item { background-color: rgba(255, 255, 255, 0.1); padding: 10px 20px; border-radius: 8px; font-weight: 700; transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed); cursor: pointer; }
+        .skill-item:hover { background-color: var(--accent-yellow); color: #0a192f; transform: translateY(-5px); box-shadow: 0 5px 15px rgba(255, 196, 0, 0.4); }
+        .project-card { background-color: rgba(0, 0, 0, 0.2); border-radius: 10px; padding: 20px; margin-bottom: 20px; border-right: 4px solid var(--accent-yellow); transition: background-color var(--transition-speed), transform var(--transition-speed); cursor: pointer; }
+        .project-card:hover { background-color: rgba(0, 0, 0, 0.3); transform: translateX(10px); }
+        .project-card h3 { color: var(--accent-yellow); margin-bottom: 10px; }
+        .project-card p { font-size: 14px; }
+        .submit-btn { background-color: var(--accent-yellow); color: #0a192f; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform var(--transition-speed), opacity var(--transition-speed); display: inline-flex; align-items: center; font-size: 16px; }
+        .submit-btn:hover { transform: translateY(-3px); opacity: 0.9; }
+        .submit-btn i { margin-left: 10px; margin-right: 0; }
+        
+        /* ---------------------------------- */
+        /* قسم "تواصل معي" و نموذج الإرسال */
+        /* ---------------------------------- */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .contact-form-container { 
+            width: 100%;
+            max-width: 600px; 
+            padding: 30px; 
+            border-radius: 15px; 
+            background-color: var(--glass-color); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            margin-bottom: 40px; 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+            text-align: right;
+        }
+        .contact-form-container h2 {
+            color: var(--accent-yellow);
+            margin-bottom: 25px;
+            font-size: 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px;
+        }
+        /* [تنسيقات النموذج الداخلية كما هي] */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--light-text); font-weight: 700; }
+        .form-group input, .form-group textarea { 
+            width: 100%; padding: 15px; border: none; border-radius: 8px; 
+            background-color: rgba(255, 255, 255, 0.1); color: var(--light-text); 
+            transition: border-color var(--transition-speed); resize: vertical; 
+        }
+        .form-group input:focus, .form-group textarea:focus { 
+            outline: none; border: 2px solid var(--accent-yellow); 
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* ---------------------------------- */
+        /* أيقونات التواصل الاجتماعي (التعديل الجديد) */
+        /* ---------------------------------- */
+        .social-icons {
+            display: flex; 
+            gap: 25px; 
+            margin-top: 20px;
+            justify-content: center; 
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%; 
+            background-color: var(--glass-color); /* خلفية زجاجية شفافة */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 28px;
+            border: 2px solid transparent; /* إطار أولي شفاف */
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1); /* رفع وتكبير خفيف */
+            box-shadow: 0 8px 15px rgba(255, 196, 0, 0.5); /* ظل واضح عند التمرير */
+            border-color: var(--accent-yellow); /* إطار بلون مميز */
+        }
+
+        /* ألوان الأيقونات نفسها (ليست الخلفية) */
+        .whatsapp-icon i { color: var(--whatsapp-color); } 
+        .facebook-icon i { color: var(--facebook-color); }
+        .email-icon i { color: var(--email-color); }
+        .phone-icon i { color: #0077b5; } /* لون أزرق مناسب للهاتف */
+
+
+        /* ---------------------------------- */
+        /* قسم حقوق النشر (Footer) */
+        /* ---------------------------------- */
+        .footer {
+            text-align: center;
+            padding: 25px; 
+            background-color: var(--glass-color);
+            backdrop-filter: blur(10px); 
+            margin-top: 50px;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ---------------------------------- */
+        /* التجاوبية (Responsive Design) - تحسين الحجم */
+        /* ---------------------------------- */
+        @media (max-width: 992px) {
+            .header { padding: 15px 40px; }
+            .main-content-wrapper { padding: 0 40px; }
+            .hero-section { flex-direction: column-reverse; text-align: center; }
+            .left-content, .right-content { flex-basis: 100%; padding: 0; }
+            .hero-title { font-size: 40px; margin-top: 30px; }
+            .image-container { width: 300px; height: 300px; }
+            .decoration-icon { display: none; }
+            
+            /* تقليل حجم الأيقونات قليلاً على الجوال */
+            .social-icons a {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 15px 20px; }
+            .main-content-wrapper { padding: 0 20px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+            .nav-links li { margin: 0 10px 10px 10px; }
+            .section-title { font-size: 28px; }
+            .skills-list, .social-icons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#skills">المهارات والخبرات</a></li>
+                <li><a href="#projects">مشاريعي</a></li>
+                <li><a href="#about">نبذة عني</a></li>
+                <li><a href="#contact">تواصل معي</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content-wrapper">
+        
+        <section class="hero-section" id="home">
+            <div class="left-content">
+                <h2 class="hero-title">أهلاً بك في <br> صفحة <span> ضيف الله ناجي</span> الشخصية</h2>
+                <p class="hero-text">
+                    مطور واجهات أمامية فني متخصص في تشغيل غرف التحكم وإدارة أبراج المواد السائبة، مع خبرة تزيد عن 5 سنوات. ماهر في حساب الكميات وحسابات الإنتاج، بالإضافة إلى إتقان تطبيقات microsoft office للتقارير والتحليلات. ملتزم بتحسين العمليات الصناعية وضمان السلامة.
+                </p>
+                
+                <a href="#contact" class="submit-btn" style="margin-top: 20px;">
+                    <i class="fas fa-paper-plane"></i> تواصل معي الآن
+                </a>
+            </div>
+            
+            <div class="right-content">
+                <div class="image-container">
+                    <img src="My122.jpg" 
+                         alt="صورة شخصية" 
+                         class="profile-image">
+                </div>
+
+                <span class="decoration-icon rocket"><i class="fas fa-rocket"></i></span>
+                <span class="decoration-icon chat-bubble"><i class="fas fa-laptop-code"></i></span>
+                <span class="decoration-icon target"><i class="fas fa-medal"></i></span>
+            </div>
+        </section>
+
+        <section class="skills-section new-section" id="skills">
+            <h2 class="section-title">✨ المهارات والخبرات</h2>
+            <p style="margin-bottom: 20px;"></p>
+            
+            <ul class="skills-list">
+                <li class="skill-item">HTML5 / CSS3</li>
+                <li class="skill-item">تشغيل غرف التحكم بشكل فعال مراقبة أداء الآلات</li>
+                <li class="skill-item">برامج أوفيس</li>
+                <li class="skill-item">Excel: جداول ديناميكية، Pivot Tables, معادلات مالية، رسوم بيانية، Macros</li>
+                <li class="skill-item">Word: تقارير، دلائل تشغيل، نماذج</li>
+                <li class="skill-item">حساب الكميات اليومية (تحميل/تفريغ/مخزون) باستخدام Excel (جداول Pivot + معادلات VLOOKUP + رسوم بيانية ديناميكية).</li>
+                <li class="skill-item">مهارات إضافية: عمل تحت ضغط، الامتثال لمعايير السلامة (OSHA)، حل المشكلات، والاتصال الفريقي.</li>
+            </ul>
+        </section>
+
+        <section class="projects-section new-section" id="projects">
+            <h2 class="section-title"> الانجازات المهنية </h2>
+            <p style="margin-bottom: 20px;">أمثلة من أعمالي التي نفذتها مؤخراً.</p>
+            
+            <div class="project-card">
+                <h3>تطبيق إدارة المهام المتكامل</h3>
+                <p>تنسيق عمليات الصيانة الوقائية دون توقف إنتاجي .</p>
+            </div>
+            
+            <div class="project-card">
+                <h3>حصري</h3>
+                <p>حساب الكميات وإدارة فرق معدات وشاحنات استجابه فورية و متابعة الأعطال ورفع بتقارير يومية توضح سير العمل انجاز مسيرات رواتب </p>
+            </div>
+
+            <div class="project-card">
+                <h3>لوحة تحكم (Dashboard) تحليلية</h3>
+                <p>إنشاء لوحة تحكم تفاعلية لعرض البيانات المعقدة وتحويلها إلى رسوم بيانية سهلة القراءة.</p>
+            </div>
+        </section>
+        
+        <section class="about-section new-section" id="about">
+            <h2 class="section-title">👤 نبذة عني</h2>
+            <p>
+                اسمي **[ضيف الله ناجي]** وأنا مطور شغوف بتحويل الأفكار إلى حلول رقمية فعّالة. مشغل غرفة تحكم محترف بخبرة 5+ سنوات في مراقبة وتشغيل أنظمة نقل وتخزين المواد السائبة (الحبوب، الأسمنت، الفحم) عبر أنظمة SCADA وDCS، مع إجادة تامة لبرامج Microsoft Office وحسابات الكميات بدقة عالية، أهدف للانضمام إلى فريق يركز على الكفاءة التشغيلية والسلامة.
+            </p>
+        </section>
+
+        
+        <section class="contact-section new-section" id="contact">
+            <h2 class="section-title">📞 تواصل معي</h2>
+            
+            
+            <div class="contact-form-container">
+                <h2>أرسل لي رسالة</h2>
+                <form action="https://formsubmit.co/[alquzyyy@hotmail.com]" method="POST">
+                    <div class="form-group">
+                        <label for="name">الاسم:</label>
+                        <input type="text" id="name" name="الاسم" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني:</label>
+                        <input type="email" id="email" name="البريد الإلكتروني" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">الرسالة:</label>
+                        <textarea id="message" name="الرسالة" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        إرسال الرسالة <i class="fas fa-paper-plane"></i>
+                    </button>
+                    
+                    <input type="hidden" name="_next" value="[https://yourwebsite.com/thankyou.html]">
+                    <input type="hidden" name="_subject" value="رسالة جديدة من موقعك الشخصي">
+                </form>
+            </div>
+
+            
+            <div class="social-icons">
+                <a 
+                    href="https://wa.me/[966546341009]?text=مرحباً،%20لديّ%20استفسار%20من%20خلال%20موقعك%20الشخصي." 
+                    target="_blank" 
+                    class="whatsapp-icon" 
+                    title="تواصل واتساب"
+                    rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                
+                <a 
+                    href="tel:[+966546341009]" 
+                    target="_blank" 
+                    class="phone-icon"
+                    title="اتصل بي مباشرة"
+                    rel="noopener noreferrer">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+
+                <a 
+                    href="https://www.facebook.com/share/19wTk8caz7/" 
+                    target="_blank" 
+                    class="facebook-icon"
+                    title="صفحتي على فيسبوك"
+                    rel="noopener noreferrer">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                
+                <a 
+                    href="mailto:[alquzyyy@hotmail.com]?subject=استفسار%20من%20الموقع%20الشخصي&body=أهلاً،%20أود%20أن%20أتواصل%20معك%20بشأن..." 
+                    target="_blank" 
+                    class="email-icon"
+                    title="إرسال بريد إلكتروني"
+                    rel="noopener noreferrer">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+            </div>
+        </section>
+
+    </div> 
+    
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة &copy; 2024 ضيف الله ناجي.</p>
+    </footer> 
+    
+
+</body>
+</html>
